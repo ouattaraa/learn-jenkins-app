@@ -14,10 +14,15 @@ pipeline {
                     ls -la
                     node --version
                     npm --version
-                    npm cache clean --force
-                    npm ci
+                    npm install
                     npm run build 
                 '''
+            }
+        }
+
+        stage('Test'){
+            steps {
+                sh 'test -f build/index.html'
             }
         }
     }
